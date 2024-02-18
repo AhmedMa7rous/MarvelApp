@@ -9,21 +9,27 @@
 /* Begin PBXBuildFile section */
 		4BA7000B2B8267F700FA509D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7000A2B8267F700FA509D /* AppDelegate.swift */; };
 		4BA7000D2B8267F700FA509D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7000C2B8267F700FA509D /* SceneDelegate.swift */; };
-		4BA7000F2B8267F700FA509D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7000E2B8267F700FA509D /* ViewController.swift */; };
-		4BA700122B8267F700FA509D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BA700102B8267F700FA509D /* Main.storyboard */; };
 		4BA700142B8267F900FA509D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BA700132B8267F900FA509D /* Assets.xcassets */; };
 		4BA700172B8267F900FA509D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BA700152B8267F900FA509D /* LaunchScreen.storyboard */; };
+		4BA700222B82698100FA509D /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA700202B82698100FA509D /* NavigationViewController.swift */; };
+		4BA700232B82698100FA509D /* NavigationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BA700212B82698100FA509D /* NavigationViewController.xib */; };
+		4BA700262B826CD000FA509D /* AnimatedProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA700252B826CD000FA509D /* AnimatedProgressBar.swift */; };
+		4BA7002B2B826CDA00FA509D /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA700292B826CDA00FA509D /* SplashViewController.swift */; };
+		4BA7002C2B826CDA00FA509D /* SplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BA7002A2B826CDA00FA509D /* SplashViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4BA700072B8267F700FA509D /* MarvelApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarvelApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BA7000A2B8267F700FA509D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4BA7000C2B8267F700FA509D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		4BA7000E2B8267F700FA509D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		4BA700112B8267F700FA509D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4BA700132B8267F900FA509D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4BA700162B8267F900FA509D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4BA700182B8267F900FA509D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4BA700202B82698100FA509D /* NavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
+		4BA700212B82698100FA509D /* NavigationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NavigationViewController.xib; sourceTree = "<group>"; };
+		4BA700252B826CD000FA509D /* AnimatedProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedProgressBar.swift; sourceTree = "<group>"; };
+		4BA700292B826CDA00FA509D /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		4BA7002A2B826CDA00FA509D /* SplashViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SplashViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,15 +54,58 @@
 		4BA700092B8267F700FA509D /* MarvelApp */ = {
 			isa = PBXGroup;
 			children = (
+				4BA700242B826CD000FA509D /* Helpers */,
+				4BA7001E2B82696D00FA509D /* Modules */,
 				4BA7000A2B8267F700FA509D /* AppDelegate.swift */,
 				4BA7000C2B8267F700FA509D /* SceneDelegate.swift */,
-				4BA7000E2B8267F700FA509D /* ViewController.swift */,
-				4BA700102B8267F700FA509D /* Main.storyboard */,
 				4BA700132B8267F900FA509D /* Assets.xcassets */,
 				4BA700152B8267F900FA509D /* LaunchScreen.storyboard */,
 				4BA700182B8267F900FA509D /* Info.plist */,
 			);
 			path = MarvelApp;
+			sourceTree = "<group>";
+		};
+		4BA7001E2B82696D00FA509D /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				4BA700272B826CDA00FA509D /* Splash */,
+				4BA7001F2B82698100FA509D /* NavigationController */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		4BA7001F2B82698100FA509D /* NavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				4BA700202B82698100FA509D /* NavigationViewController.swift */,
+				4BA700212B82698100FA509D /* NavigationViewController.xib */,
+			);
+			path = NavigationController;
+			sourceTree = "<group>";
+		};
+		4BA700242B826CD000FA509D /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				4BA700252B826CD000FA509D /* AnimatedProgressBar.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		4BA700272B826CDA00FA509D /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				4BA700282B826CDA00FA509D /* View */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		4BA700282B826CDA00FA509D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4BA700292B826CDA00FA509D /* SplashViewController.swift */,
+				4BA7002A2B826CDA00FA509D /* SplashViewController.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		4BA7FFFE2B8267F700FA509D = {
@@ -126,8 +175,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BA700172B8267F900FA509D /* LaunchScreen.storyboard in Resources */,
+				4BA700232B82698100FA509D /* NavigationViewController.xib in Resources */,
 				4BA700142B8267F900FA509D /* Assets.xcassets in Resources */,
-				4BA700122B8267F700FA509D /* Main.storyboard in Resources */,
+				4BA7002C2B826CDA00FA509D /* SplashViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +188,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4BA7000F2B8267F700FA509D /* ViewController.swift in Sources */,
+				4BA700222B82698100FA509D /* NavigationViewController.swift in Sources */,
+				4BA700262B826CD000FA509D /* AnimatedProgressBar.swift in Sources */,
 				4BA7000B2B8267F700FA509D /* AppDelegate.swift in Sources */,
 				4BA7000D2B8267F700FA509D /* SceneDelegate.swift in Sources */,
+				4BA7002B2B826CDA00FA509D /* SplashViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		4BA700102B8267F700FA509D /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4BA700112B8267F700FA509D /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		4BA700152B8267F900FA509D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -297,7 +341,7 @@
 				INFOPLIST_FILE = MarvelApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -307,6 +351,10 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Mahrous.MarvelApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -325,7 +373,7 @@
 				INFOPLIST_FILE = MarvelApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -335,6 +383,10 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Mahrous.MarvelApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
