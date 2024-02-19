@@ -54,7 +54,7 @@ class AnimatedLinearProgressBar: UIView {
             let animation = CABasicAnimation(keyPath: "strokeEnd")
             animation.fromValue = progress
             animation.toValue = self.progress
-            animation.duration = 2.0
+            animation.duration = 1.0
             animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
             shapeLayer.add(animation, forKey: "strokeEndAnimation")
         } else {
