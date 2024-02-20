@@ -17,7 +17,6 @@ class SplashViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateUi()
-        // Do any additional setup after loading the view.
     }
     
     //MARK: - Support Functions
@@ -27,11 +26,14 @@ class SplashViewController: UIViewController {
         updateNavigationController()
     }
     
-    ///This is a support function (support updateUi function) to set up navigation bar UI
+    ///This is a support function (support updateUi function) to set up navigation UI
     ///Note that: You can call this function only inside updateUi function otherwise your code will be a legacy code not a clean one
     private func updateNavigationController() {
-        #warning("change the rootViewController for Navigation Controller it must be the Home screen")
-        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+            guard let self = self else { return }
+            let vc = HomeViewController()
+            self.navigationController?.setViewControllers([vc], animated: true)
+        }
     }
     
     ///This is a support function (support updateUi function) to set up progress bar UI
