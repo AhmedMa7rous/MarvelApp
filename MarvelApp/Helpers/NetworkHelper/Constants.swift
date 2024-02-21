@@ -16,7 +16,8 @@ struct Constants {
     static let parameters: [String: Any] = [
         "ts": ts,
         "apikey": apiKey,
-        "hash": hash
+        "hash": hash,
+        "limit": 20
     ]
     
     

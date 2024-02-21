@@ -16,19 +16,20 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="101"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="O4t-fo-9CK">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icn-nav-marvel" translatesAutoresizingMaskIntoConstraints="NO" id="O4t-fo-9CK">
                         <rect key="frame" x="0.0" y="0.0" width="80" height="101"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="80" id="BBJ-cZ-0ap"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cqP-5p-ocB">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="cqP-5p-ocB">
                         <rect key="frame" x="90" y="40" width="220" height="21"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                        <nil key="textColor"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="O4t-fo-9CK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="86S-Jx-Ed9"/>
                     <constraint firstAttribute="trailing" secondItem="cqP-5p-ocB" secondAttribute="trailing" constant="10" id="9Kg-Lz-Chq"/>
@@ -46,4 +47,7 @@
             <point key="canvasLocation" x="140.45801526717557" y="56.690140845070424"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="icn-nav-marvel" width="62" height="28"/>
+    </resources>
 </document>

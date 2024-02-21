@@ -47,11 +47,11 @@ struct CharacterStories: Codable {
 // MARK: - Thumbnail
 struct Thumbnail: Codable {
     let path: String
-    let thumbnailExtension: Extension
+    let ext: Extension
 
     enum CodingKeys: String, CodingKey {
         case path
-        case thumbnailExtension = "extension"
+        case ext = "extension"
     }
 }
 

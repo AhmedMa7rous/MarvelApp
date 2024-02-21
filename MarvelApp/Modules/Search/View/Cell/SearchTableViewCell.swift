@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class SearchTableViewCell: UITableViewCell {
     
@@ -28,6 +29,8 @@ class SearchTableViewCell: UITableViewCell {
     //MARK: - Support Functions
     //This function responsible for setting data to UI
     func configure(with image: String, for name: String) {
-        self.characterNameLabel.text = name
+        let imageUrl = URL(string: image)
+        characterImageView.kf.setImage(with: imageUrl)
+        characterNameLabel.text = name
     }
 }

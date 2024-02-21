@@ -50,6 +50,8 @@ class ParallelogramViewWithLabel: UIView {
         label.textColor = .black
         label.numberOfLines = 1
         label.lineBreakMode = .byWordWrapping
+        label.minimumScaleFactor = 0.1
+        label.adjustsFontSizeToFitWidth = true
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         label.translatesAutoresizingMaskIntoConstraints = false
         addSubview(label)
@@ -58,8 +60,8 @@ class ParallelogramViewWithLabel: UIView {
         NSLayoutConstraint.activate([
             label.centerXAnchor.constraint(equalTo: centerXAnchor),
             label.centerYAnchor.constraint(equalTo: centerYAnchor),
-            label.widthAnchor.constraint(equalTo: widthAnchor, constant: 5),
-            label.heightAnchor.constraint(equalTo: heightAnchor, constant: 5)
+            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
         ])
     }
 }
