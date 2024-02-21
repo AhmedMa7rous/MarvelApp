@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class HomeTableViewCell: UITableViewCell {
     
@@ -37,6 +38,8 @@ class HomeTableViewCell: UITableViewCell {
     //MARK: - Support Functions
     //This function responsible for setting data to UI
     func configure(with image: String, for name: String) {
+        let imageUrl = URL(string: image)
+        characterImageView.kf.setImage(with: imageUrl)
         self.name = name
     }
     

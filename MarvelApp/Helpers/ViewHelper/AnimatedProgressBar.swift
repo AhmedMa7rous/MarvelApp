@@ -12,7 +12,7 @@ class AnimatedLinearProgressBar: UIView {
     //MARK: - Properties
     private let shapeLayer = CAShapeLayer()
     private var progress: CGFloat = 0
-    
+    var timer: Timer?
     
     //MARK: - LifeCycle
     override init(frame: CGRect) {
@@ -48,20 +48,31 @@ class AnimatedLinearProgressBar: UIView {
     //MARK: - Services Functions
     
     func setProgress(_ progress: CGFloat, animated: Bool) {
+        var continousProgress = progress
         guard progress >= 0 && progress <= 1 else { return }
         
-        if animated {
-            let animation = CABasicAnimation(keyPath: "strokeEnd")
-            animation.fromValue = progress
-            animation.toValue = self.progress
-            animation.duration = 1.0
-            animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
-            shapeLayer.add(animation, forKey: "strokeEndAnimation")
-        } else {
-            shapeLayer.strokeEnd = progress
-        }
+        // Invalidate the existing timer if it exists
+        timer?.invalidate()
         
-        self.progress = progress
+        // Create a new timer
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { [weak self] timer in
+            guard let self = self else { return }
+            // Code block to be executed continuously
+            if animated {
+                let animation = CABasicAnimation(keyPath: "strokeEnd")
+                animation.fromValue = continousProgress
+                animation.toValue = self.progress
+                animation.duration = 0.5
+                animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
+                self.shapeLayer.add(animation, forKey: "strokeEndAnimation")
+                self.progress += continousProgress
+                continousProgress = self.progress - continousProgress
+                self.progress -= continousProgress
+            } else {
+                // Stop the timer if the condition is no longer true
+                timer.invalidate()
+            }
+        }
     }
+    
 }
-

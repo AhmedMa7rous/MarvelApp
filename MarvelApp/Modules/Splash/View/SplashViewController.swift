@@ -29,11 +29,11 @@ class SplashViewController: UIViewController {
     ///This is a support function (support updateUi function) to set up navigation UI
     ///Note that: You can call this function only inside updateUi function otherwise your code will be a legacy code not a clean one
     private func updateNavigationController() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
-            guard let self = self else { return }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0 ) { [weak self] in
             let vc = HomeViewController()
-            self.navigationController?.setViewControllers([vc], animated: true)
+            self?.navigationController?.setViewControllers([vc], animated: true)
         }
+        
     }
     
     ///This is a support function (support updateUi function) to set up progress bar UI

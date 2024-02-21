@@ -71,8 +71,10 @@ class NetworkManager: NetworkManagerProtocol {
     }
     
     //MARK: - EndPoints Functions
-    func fetchCharacters(completion: @escaping (Result<Characters, APIError>) -> Void) {
-        makeRequest(urlString: Constants.Endpoints.characters, method: "GET", parameters: Constants.parameters, completion: completion)
+    func fetchCharacters(withOffSet offSet: Int, completion: @escaping (Result<Characters, APIError>) -> Void) {
+        var parameters = Constants.parameters
+        parameters["offset"] = offSet
+        makeRequest(urlString: Constants.Endpoints.characters, method: "GET", parameters: parameters, completion: completion)
     }
     
     func fetchCharacterComics(forCharacterId characterId: Int, completion: @escaping (Result<Comics, APIError>) -> Void) {

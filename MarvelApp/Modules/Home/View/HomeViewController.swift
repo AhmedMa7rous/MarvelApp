@@ -6,40 +6,41 @@
 //
 
 import UIKit
+import RxSwift
 
 class HomeViewController: UIViewController {
     
     //MARK: - Outlet Connections
     @IBOutlet weak var charactersTableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var headerView: UIView!
     
     
     //MARK: - Properties
-    #warning("Must remove this array and changed it with acual data source")
-    var names = ["Alice", "Bob", "Charlie", "David", "Emma", "Alice", "Bob", "Charlie", "David", "Emma", "Alice", "Bob", "Charlie", "David", "Emma"]
-    var filteredNames: [String] = []
-    var searchController: UISearchController!
-    var isSearching = false
+    var viewModel = HomeViewModel()
+    var searchController: UISearchController?
+    
     
     //MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateUi() 
+        updateUi()
+        bindActivityIndicator()
+        viewModel.fetchData(withOffSet: 0)
+        bindTableView()
+        
     }
     
     
     //MARK: - Action Connections
     
     @objc func searchButtonTapped() {
-        isSearching = true
-        charactersTableView.reloadData()
-        if searchController == nil {
-            setupSearchController()
-        }
-        navigationItem.titleView = searchController.searchBar
-        navigationItem.rightBarButtonItem = nil
-        searchController.hidesNavigationBarDuringPresentation = false
-        navigationItem.hidesSearchBarWhenScrolling = false
+        let searchViewModel = SearchViewModel(allCharacters: viewModel.characters)
+        let vc = SearchViewController(viewModel: searchViewModel)
+        vc.modalPresentationStyle = .fullScreen
+        vc.modalTransitionStyle = .crossDissolve
+        present(vc, animated: true)
     }
     
     
@@ -47,12 +48,59 @@ class HomeViewController: UIViewController {
     //MARK: - Support Functions
     //This function responsible for everything related with UI in the Initial state
     private func updateUi() {
+        headerView.isHidden = true
+        showLoader(forCell: false)
         setupNavigationBar()
         setupTableView()
+        setupObservables()
     }
     
+    ///This is a support function (support updateUi function) to set up table view
+    ///Note that: You can call this function only inside updateUi function otherwise your code will be a legacy code not a clean one
+    private func setupTableView() {
+        charactersTableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 60, right: 0)
+        
+        charactersTableView.rx.setDelegate(self).disposed(by: viewModel.disposeBag)
+        //Register Cells
+        charactersTableView.register(HomeTableViewCell.nib, forCellReuseIdentifier: HomeTableViewCell.identifier)
+        
+    }
+    
+    ///This is a support function (support updateUi function) to change UI according to data network call
+    ///Note that: You can call this function only inside updateUi function otherwise your code will be a legacy cose not a clean one
+    private func setupObservables() {
+        
+        viewModel.onSuccess.subscribe { [weak self] _ in
+            guard let self = self else { return }
+            self.viewModel.showLoader.accept(false)
+            DispatchQueue.main.async {
+                self.activityIndicator.isHidden = true
+                self.navigationController?.navigationBar.isHidden = false
+                self.headerView.isHidden = false
+            }
+        }.disposed(by: viewModel.disposeBag)
+        
+        viewModel.onError.subscribe { [weak self] error in
+            guard let self = self else { return }
+            self.viewModel.showLoader.accept(true)
+            self.activityIndicator.isHidden = false
+            self.navigationController?.navigationBar.isHidden = true
+            self.headerView.isHidden = true
+        }.disposed(by: viewModel.disposeBag)
+    }
+    
+    ///This is a support function to set up activityIndicator  UI
+    private func bindActivityIndicator() {
+        viewModel.showLoader
+            .asDriver()
+            .drive(activityIndicator.rx.isAnimating)
+            .disposed(by: viewModel.disposeBag)
+    }
+        
     ///This is a support function to set up navigation bar UI
     private func setupNavigationBar() {
+        //Hide Navigation Bar in the initial state
+        navigationController?.navigationBar.isHidden = true
         // Create a UIImageView with marvel image
         let imageView = UIImageView(image: UIImage(named: "icn-nav-marvel"))
         
@@ -80,96 +128,73 @@ class HomeViewController: UIViewController {
         
     }
     
-    ///This is a support function (support updateUi function) to set up table view
-    ///Note that: You can call this function only inside updateUi function otherwise your code will be a legacy code not a clean one
-    private func setupTableView() {
-        //Set Delegate & Data source
-        charactersTableView.delegate = self
-        charactersTableView.dataSource = self
+    private func showLoader(forCell: Bool) {
         
-        //Register Cells
-        charactersTableView.register(HomeTableViewCell.nib, forCellReuseIdentifier: HomeTableViewCell.identifier)
-        charactersTableView.register(SearchTableViewCell.nib, forCellReuseIdentifier: SearchTableViewCell.identifier)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         
-    }
-    
-    ///This is a support function  to set up search controller when tap on search button
-    private func setupSearchController() {
-        searchController = UISearchController(searchResultsController: nil)
-        searchController.searchBar.placeholder = "Search"
-        searchController.searchBar.delegate = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.showsCancelButton = true
-    
-        // Change cancel button color to red
-        searchController.searchBar.tintColor = .black
+        // Remove existing constraints
+        activityIndicator.removeConstraints(activityIndicator.constraints)
         
-        // Change search bar background color to white
-        searchController.searchBar.barTintColor = .red
+        // Remove from superview
+        activityIndicator.removeFromSuperview()
         
-        // Change search bar text color to black
-        if let textFieldInsideSearchBar = searchController.searchBar.value(forKey: "searchField") as? UITextField {
-            textFieldInsideSearchBar.backgroundColor = .white
+        // Create new constraints based on the condition
+        if forCell {
+            view.addSubview(activityIndicator)
+            NSLayoutConstraint.activate([
+                activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                activityIndicator.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30),
+                activityIndicator.widthAnchor.constraint(equalToConstant: 40),
+                activityIndicator.heightAnchor.constraint(equalToConstant: 40)
+            ])
+        } else {
+            view.addSubview(activityIndicator)
+            NSLayoutConstraint.activate([
+                activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+                activityIndicator.widthAnchor.constraint(equalToConstant: 40),
+                activityIndicator.heightAnchor.constraint(equalToConstant: 40)
+            ])
         }
+        
+        activityIndicator.isHidden = false
     }
+    
 }
 
 //MARK: - TableView Functions
-extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return isSearching ? filteredNames.count : names.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let name = isFiltering() ? filteredNames[indexPath.row] : names[indexPath.row]
+extension HomeViewController: UITableViewDelegate {
+    private func bindTableView() {
+        viewModel.characters.bind(to: charactersTableView.rx.items(cellIdentifier: HomeTableViewCell.identifier, cellType: HomeTableViewCell.self)) { (row, character, cell) in
+            cell.configure(with: character.thumbnail.path + "." + character.thumbnail.ext.rawValue, for: character.name)
+        }.disposed(by: viewModel.disposeBag)
         
-        // Dequeue the correct cell based on its identifier
-        let cellIdentifier = isSearching ? SearchTableViewCell.identifier : HomeTableViewCell.identifier
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-        
-        // Cast the cell to the appropriate type
-        if let homeCell = cell as? HomeTableViewCell {
-            // Configure HomeTableViewCell
-            homeCell.configure(with: "", for: name)
-        } else if let searchCell = cell as? SearchTableViewCell {
-            // Configure SearchTableViewCell
-            searchCell.configure(with: "", for: name)
-        }
-        
-        return cell
+        charactersTableView.rx.modelSelected(Character.self).subscribe { [weak self] character in
+            guard let self = self else { return }
+            #warning("Navigate to Details view controller")
+        }.disposed(by: viewModel.disposeBag)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return isSearching ? 80 : (0.23 * view.frame.size.height)
+        return tableView.frame.size.height / 3.85 //(0.23 * view.frame.size.height)
     }
     
-}
-
-//MARK: - UISearchBarDelegate Functions
-extension HomeViewController: UISearchBarDelegate {
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        isSearching = false
-        charactersTableView.reloadData()
-        navigationItem.titleView = nil
-        setupNavigationBar()
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
     }
     
-    func isFiltering() -> Bool {
-        guard let searchController = searchController else { return false }
-        return searchController.isActive && !searchBarIsEmpty()
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        // Check if the displayed cell is the last cell
+        let lastRow = tableView.numberOfRows(inSection: 0) - 1
+        //print(indexPath.row)
+        if indexPath.row == lastRow - 4 {
+            showLoader(forCell: true)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
+                guard let self = self else { return }
+                self.viewModel.fetchData(withOffSet: self.viewModel.numberOfCharacters)
+            }
+            
+        }
     }
     
-    func searchBarIsEmpty() -> Bool {
-        return searchController.searchBar.text?.isEmpty ?? true
-    }
-    
-    func filterContentForSearchText(_ searchText: String) {
-        filteredNames = names.filter { $0.lowercased().contains(searchText.lowercased()) }
-        charactersTableView.reloadData()
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filterContentForSearchText(searchText)
-    }
 }
