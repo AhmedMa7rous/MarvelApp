@@ -25,9 +25,9 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateUi()
         bindActivityIndicator()
         viewModel.fetchData(withOffSet: 0)
+        updateUi()
         bindTableView()
         
     }
@@ -91,6 +91,7 @@ class HomeViewController: UIViewController {
     
     ///This is a support function to set up activityIndicator  UI
     private func bindActivityIndicator() {
+        navigationController?.navigationBar.isHidden = true
         viewModel.showLoader
             .asDriver()
             .drive(activityIndicator.rx.isAnimating)
@@ -100,7 +101,7 @@ class HomeViewController: UIViewController {
     ///This is a support function to set up navigation bar UI
     private func setupNavigationBar() {
         //Hide Navigation Bar in the initial state
-        navigationController?.navigationBar.isHidden = true
+        navigationController?.navigationBar.isHidden = false
         // Create a UIImageView with marvel image
         let imageView = UIImageView(image: UIImage(named: "icn-nav-marvel"))
         
@@ -171,7 +172,9 @@ extension HomeViewController: UITableViewDelegate {
         
         charactersTableView.rx.modelSelected(Character.self).subscribe { [weak self] character in
             guard let self = self else { return }
-            #warning("Navigate to Details view controller")
+            let detailsViewmodel = DetailsViewModel(forCharacter: character)
+            let vc = DetailsViewController(viewModel: detailsViewmodel)
+            self.navigationController?.pushViewController(vc, animated: true)
         }.disposed(by: viewModel.disposeBag)
     }
     
