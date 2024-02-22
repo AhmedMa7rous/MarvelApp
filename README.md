@@ -11,11 +11,12 @@
 ## Getting Started
 
 *To get this project up and running on your local machine for development and testing purposes make sure all prerequisties are met.*
-- Clone this project on your machine by running
+- First make sure you are in the main branch.
+- Then clone this project on your machine by running
  ```
-git clone https://github.com/ma7ros/ToDo-List.git
+git clone https://github.com/AhmedMa7rous/MarvelApp.git
 ```
-Or you can simply click [Download](https://github.com/ma7ros/ToDo-List/archive/refs/heads/master.zip) to manually download.
+Or you can simply click [Download](https://github.com/AhmedMa7rous/MarvelApp/archive/refs/heads/main.zip) to manually download.
 - Xcode Version 15.2
 - iOS Deployment Target 17.2
 - After cloned the code build the project by press <kbd>cmd</kbd> + <kbd>B</kbd>
@@ -23,7 +24,9 @@ Or you can simply click [Download](https://github.com/ma7ros/ToDo-List/archive/r
        - [RxSwift](https://github.com/ReactiveX/RxSwift) Up to Next Major Version 6.6.0
        - [Kingfisher](https://github.com/onevcat/Kingfisher) Up to Next Major Version 7.11.0
        - After that build again should be succeeded.
-    - if build succeeded now choose your device ![Screenshot 2024-02-22 at 4 26 55 PM](https://github.com/AhmedMa7rous/MarvelApp/assets/33738409/a3a7c5a4-5f50-43bd-b16b-c442ec56b75b)
+    - if build succeeded now choose your device.
+
+![Screenshot 2024-02-22 at 4 26 55 PM](https://github.com/AhmedMa7rous/MarvelApp/assets/33738409/a3a7c5a4-5f50-43bd-b16b-c442ec56b75b)
 
 - Then hit run button OR press <kbd>cmd</kbd> + <kbd>R</kbd>
 
@@ -63,4 +66,4 @@ They said that "Success comes from good planning" and after reading and understa
 
 
 
-<h3 align="center"> Thanks </h3>
+<h2 align="center"> Thanks </h2>
