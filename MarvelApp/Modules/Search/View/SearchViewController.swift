@@ -98,7 +98,9 @@ extension SearchViewController: UITableViewDelegate {
         
         searchTableView.rx.modelSelected(Character.self).subscribe { [weak self] character in
             guard let self = self else { return }
-            #warning("Navigate to Details view controller")
+            let detailsViewmodel = DetailsViewModel(forCharacter: character)
+            let vc = DetailsViewController(viewModel: detailsViewmodel)
+            self.navigationController?.pushViewController(vc, animated: true)
         }.disposed(by: viewModel.disposeBag)
     }
     

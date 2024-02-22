@@ -18,11 +18,11 @@ struct Events: Codable {
 // MARK: - DataClass
 struct EventsData: Codable {
     let offset, limit, total, count: Int
-    let results: [Event]
+    let results: [EventResult]
 }
 
 // MARK: - Result
-struct Event: Codable {
+struct EventResult: Codable {
     let id: Int
     let title, description: String
     let thumbnail: Thumbnail

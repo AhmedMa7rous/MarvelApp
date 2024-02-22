@@ -39,10 +39,10 @@ class SplashViewController: UIViewController {
     ///This is a support function (support updateUi function) to set up progress bar UI
     ///Note that: You can call this function only inside updateUi function otherwise your code will be a legacy code not a clean one
     private func setUpProgressBar() {
-        let centerX = view.center.x - 60
-        let centerY = view.center.y + 110
+        let X = logoImageView.frame.minX + 25 //view.center.x - 60
+        let Y = logoImageView.frame.maxY //view.center.y + 110
 
-        let progressBar = AnimatedLinearProgressBar(frame: CGRect(x: centerX, y: centerY, width:  150, height: 5))
+        let progressBar = AnimatedLinearProgressBar(frame: CGRect(x: X, y: Y, width:  150, height: 5))
         view.addSubview(progressBar)
         progressBar.setProgress(1, animated: true)
     }

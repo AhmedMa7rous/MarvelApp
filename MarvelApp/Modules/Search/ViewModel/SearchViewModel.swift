@@ -15,9 +15,16 @@ class SearchViewModel {
     let searchText = BehaviorRelay<String>(value: "")
     private let filteredCharacters = BehaviorRelay<[Character]>(value: [])
     var disposeBag: DisposeBag = DisposeBag()
+    
+    
     //MARK: - Initializer
     init(allCharacters: BehaviorRelay<[Character]> = BehaviorRelay<[Character]>(value: [Character]())) {
         self.searchableCharacters = allCharacters
+        updateFilteredCharacters()
+    }
+    
+    //MARK: - Private Methods
+    private func updateFilteredCharacters() {
         // Subscribe to searchText changes and update filteredCharacters
         searchText
             .debounce(.milliseconds(300), scheduler: MainScheduler.instance) // debounce to avoid rapid search updates
@@ -32,8 +39,6 @@ class SearchViewModel {
             })
             .disposed(by: disposeBag)
     }
-    
-    
     
     //MARK: - Public Methods
     /// Observable for the filtered characters
