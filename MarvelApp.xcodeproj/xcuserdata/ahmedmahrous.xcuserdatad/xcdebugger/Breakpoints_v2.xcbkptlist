@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "07EF759A-6C3C-440C-BD7C-F4498E76AFA3"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4E98367A-340F-486A-9376-4E66FBC205E6"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MarvelApp/Modules/Home/View/Cells/HomeCell/HomeTableViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "configure(with:for:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "96D7DDE8-B2DC-479A-9483-89445C61A2CB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MarvelApp/Modules/Home/View/HomeViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
+            landmarkName = "showLoader(forCell:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "96D7DDE8-B2DC-479A-9483-89445C61A2CB - 403d8a08958ce0f5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MarvelApp.HomeViewController.showLoader(forCell: Swift.Bool) -&gt; ()"
+                  moduleName = "MarvelApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ahmedmahrous/Developer/MarvelApp/MarvelApp/Modules/Home/View/HomeViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "145"
+                  endingLineNumber = "145"
+                  offsetFromSymbolStart = "944">
+               </Location>
+               <Location
+                  uuid = "96D7DDE8-B2DC-479A-9483-89445C61A2CB - 403d8a08958ce094"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MarvelApp.HomeViewController.showLoader(forCell: Swift.Bool) -&gt; ()"
+                  moduleName = "MarvelApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ahmedmahrous/Developer/MarvelApp/MarvelApp/Modules/Home/View/HomeViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "144"
+                  endingLineNumber = "144"
+                  offsetFromSymbolStart = "608">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
